@@ -18,6 +18,16 @@ default[:cinder][:debug] = false
 override[:cinder][:user]="cinder"
 override[:cinder][:group]="cinder"
 
+if %w(redhat centos suse).include? node.platform
+  controller_services = ["openstack-cinder-api", "openstack-cinder-scheduler"]
+  volume_service = "openstack-cinder-volume"
+else
+  controller_services = ["cinder-api", "cinder-scheduler"]
+  volume_service = "cinder-volume"
+end
+default[:cinder][:controller][:service_name] = controller_services
+default[:cinder][:volume][:service_name] = volume_service
+
 # declare what needs to be monitored
 node[:cinder][:monitor]={}
 node[:cinder][:monitor][:svcs] = []

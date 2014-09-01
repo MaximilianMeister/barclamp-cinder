@@ -109,7 +109,7 @@
   "deployment": {
     "cinder": {
       "crowbar-revision": 0,
-      "schema-revision": 7,
+      "schema-revision": 11,
       "element_states": {
           "cinder-controller": [ "readying", "ready", "applying" ],
           "cinder-volume": [ "readying", "ready", "applying" ]
@@ -121,7 +121,9 @@
       ],
       "element_run_list_order": {
           "cinder-controller": 92,
-          "cinder-volume": 93
+          "cinder-volume": 93,
+          "cinder-controller_remove": 94,
+          "cinder-volume_remove": 95
       },
       "config": {
         "environment": "cinder-base-config",
